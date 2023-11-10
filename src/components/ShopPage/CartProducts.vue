@@ -24,7 +24,7 @@ export default {
     computed: {
         ...mapGetters(['gCartProductList', 'gMonetaryCurrency']),
         definitionMonetaryCurrency() {
-            if (!this.gMonetaryCurrency || this.gMonetaryCurrency === 1) return '₴'
+            if (this.gMonetaryCurrency === 1) return '₴'
             else return '$'
         },
         totalPrice() {

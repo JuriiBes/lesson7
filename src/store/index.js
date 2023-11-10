@@ -15,7 +15,7 @@ const store = createStore({
 
             // * -------------------------------------------------------- ShopPage
             productsListData: [],
-            monetaryCurrency: null,
+            monetaryCurrency: 1,
             cartProductList: [],
         }
     },
@@ -53,7 +53,7 @@ const store = createStore({
         gMonetaryCurrency: ({ monetaryCurrency }) => monetaryCurrency,
         gListProductWithCorrectingPrice: ({ productsListData, monetaryCurrency }) => {
             return () => {
-                if (!monetaryCurrency || !monetaryCurrency === 1) return productsListData
+                if (monetaryCurrency === 1) return productsListData
                 else {
                     return productsListData.map((product) => ({
                         ...product,
@@ -65,7 +65,7 @@ const store = createStore({
         gCartProductList: ({ cartProductList }) => cartProductList,
         gCartProductListWithCorrectingPrice: ({ monetaryCurrency, cartProductList }) => {
             return () => {
-                if (!monetaryCurrency || monetaryCurrency === 1) return cartProductList
+                if (monetaryCurrency === 1) return cartProductList
                 else {
                     return cartProductList.map((product) => ({
                         ...product,
@@ -100,6 +100,7 @@ const store = createStore({
                 state.cartProductList.push({
                     ...product,
                     count: 1,
+                    price: product.price / state.monetaryCurrency,
                 })
             } else {
                 state.cartProductList.filter((cart) => {

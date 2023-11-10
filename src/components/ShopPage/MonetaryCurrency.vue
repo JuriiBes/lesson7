@@ -1,10 +1,12 @@
 <template>
     <div>
         <h3>Валюта:</h3>
-        <select v-model="current" class="shop__currency">
-            <option value="1">Гривня</option>
-            <option value="43">Доллар</option>
-        </select>
+        <form action="#">
+            <select v-model="current" name="currency" class="shop__currency">
+                <option value="1" selected>Гривня</option>
+                <option value="43">Доллар</option>
+            </select>
+        </form>
     </div>
 </template>
 
@@ -26,6 +28,7 @@ export default {
             },
         },
     },
+
     methods: {
         ...mapActions(['aMonetaryCurrency']),
     },
