@@ -1,12 +1,11 @@
 <template>
     <div>
         <h3>Валюта:</h3>
-        <form action="#">
-            <select v-model="current" name="currency" class="shop__currency">
-                <option value="1" selected>Гривня</option>
-                <option value="43">Доллар</option>
-            </select>
-        </form>
+
+        <select v-model="current" name="currency" class="shop__currency">
+            <option value="1" selected>Гривня</option>
+            <option value="43">Доллар</option>
+        </select>
     </div>
 </template>
 

@@ -52,26 +52,22 @@ const store = createStore({
         gListProducts: ({ productsListData }) => productsListData,
         gMonetaryCurrency: ({ monetaryCurrency }) => monetaryCurrency,
         gListProductWithCorrectingPrice: ({ productsListData, monetaryCurrency }) => {
-            return () => {
-                if (monetaryCurrency === 1) return productsListData
-                else {
-                    return productsListData.map((product) => ({
-                        ...product,
-                        price: product.price * monetaryCurrency,
-                    }))
-                }
+            if (monetaryCurrency === 1) return productsListData
+            else {
+                return productsListData.map((product) => ({
+                    ...product,
+                    price: product.price * (1 / monetaryCurrency),
+                }))
             }
         },
         gCartProductList: ({ cartProductList }) => cartProductList,
         gCartProductListWithCorrectingPrice: ({ monetaryCurrency, cartProductList }) => {
-            return () => {
-                if (monetaryCurrency === 1) return cartProductList
-                else {
-                    return cartProductList.map((product) => ({
-                        ...product,
-                        price: product.price * monetaryCurrency,
-                    }))
-                }
+            if (monetaryCurrency === 1) return cartProductList
+            else {
+                return cartProductList.map((product) => ({
+                    ...product,
+                    price: product.price * (1 / monetaryCurrency),
+                }))
             }
         },
     },
@@ -90,9 +86,7 @@ const store = createStore({
             state.productsListData = list
         },
         mMonetaryCurrency(state, current) {
-            current == 1
-                ? (state.monetaryCurrency = parseInt(current))
-                : (state.monetaryCurrency = 1 / parseInt(current))
+            state.monetaryCurrency = parseInt(current)
         },
         mAddCartProductList(state, product) {
             let auditProduct = state.cartProductList.some((cartProduct) => cartProduct.id === product.id)
@@ -100,7 +94,7 @@ const store = createStore({
                 state.cartProductList.push({
                     ...product,
                     count: 1,
-                    price: product.price / state.monetaryCurrency,
+                    price: product.price * state.monetaryCurrency,
                 })
             } else {
                 state.cartProductList.filter((cart) => {

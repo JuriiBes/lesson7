@@ -3,10 +3,10 @@
         <h2 :class="shopTitle">Вітаємо на нашому сайті!!!</h2>
         <div :class="shopBody">
             <div :class="shopMain">
-                <list-products :list-products-data="gListProductWithCorrectingPrice()" class="shop__list" />
+                <list-products :list-products-data="gListProductWithCorrectingPrice" class="shop__list" />
                 <monetary-currency />
             </div>
-            <cart-products :cart-list-products-data="gCartProductListWithCorrectingPrice()" />
+            <cart-products :cart-list-products-data="gCartProductListWithCorrectingPrice" />
         </div>
     </div>
 </template>

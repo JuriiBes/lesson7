@@ -1,12 +1,12 @@
 <template>
-    <div :class="scoreRangeStyle">
-        <h2 :class="scoreTitleStyle">Рівень студента:</h2>
-        <select v-model="range" :class="scoreSelectStyle">
-            <option value="100" :class="scoreOptionStyle">Всі студенти</option>
-            <option value="10" :class="scoreOptionStyle">Відмінник</option>
-            <option value="7" :class="scoreOptionStyle">Хорошист</option>
-            <option value="4" :class="scoreOptionStyle">Трійочник</option>
-            <option value="0" :class="scoreOptionStyle">Двійочник</option>
+    <div class="score__range">
+        <h2 class="score__title">Рівень студента:</h2>
+        <select v-model="range" class="score__select">
+            <option value="100" class="score__option">Всі студенти</option>
+            <option value="10" class="score__option">Відмінник</option>
+            <option value="7" class="score__option">Хорошист</option>
+            <option value="4" class="score__option">Трійочник</option>
+            <option value="0" class="score__option">Двійочник</option>
         </select>
     </div>
 </template>
@@ -30,24 +30,6 @@ export default {
             set(val) {
                 this.$emit('update:modelValue', val)
             },
-        },
-        // ----------------------------------Style
-        scoreRangeStyle() {
-            return 'score__range'
-        },
-        scoreTitleStyle() {
-            return 'score__title'
-        },
-        scoreSelectStyle() {
-            return 'score__select'
-        },
-        scoreOptionStyle() {
-            return 'score__option'
-        },
-    },
-    methods: {
-        changeRangeScore() {
-            this.nameOfAction(this.range)
         },
     },
 }
