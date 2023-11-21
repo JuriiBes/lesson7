@@ -56,7 +56,7 @@ const store = createStore({
             else {
                 return productsListData.map((product) => ({
                     ...product,
-                    price: product.price * (1 / monetaryCurrency),
+                    price: product.price / monetaryCurrency,
                 }))
             }
         },
@@ -66,7 +66,7 @@ const store = createStore({
             else {
                 return cartProductList.map((product) => ({
                     ...product,
-                    price: product.price * (1 / monetaryCurrency),
+                    price: product.price / monetaryCurrency,
                 }))
             }
         },
